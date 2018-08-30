@@ -6,14 +6,14 @@ import time
 import re
 import requests
 import json
-import sys
+# import sys
 from bs4 import BeautifulSoup
 # from cn.localhost01.util.str_util import print_msg
 
 
 # 对于py2，将ascii改为utf8
-reload(sys)
-sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 
 class TaobaoClimber:
@@ -217,7 +217,7 @@ class TaobaoClimber:
         try:
             self.driver.switch_to_window(self.driver.window_handles[0])
         except exceptions:
-            print exceptions
+            print (exceptions)
 
         if self.__is_logined is False:
             if self.__login() is False:
@@ -283,7 +283,7 @@ if __name__ == '__main__':
     TaobaoClimber.driver.maximize_window()  # 浏览器最大化
     TaobaoClimber.driver.execute_script("window.open('')")
 
-    climber = TaobaoClimber(u"supreme25", "lemon-0205")
+    climber = TaobaoClimber(u"test", "1234")
     while True:
         # 循环爬取订单
         orders = climber.climb()
