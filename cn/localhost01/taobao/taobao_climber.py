@@ -8,7 +8,8 @@ import requests
 import json
 import sys
 from bs4 import BeautifulSoup
-from cn.localhost01.util.str_util import print_msg
+# from cn.localhost01.util.str_util import print_msg
+
 
 # 对于py2，将ascii改为utf8
 reload(sys)
@@ -150,7 +151,7 @@ class TaobaoClimber:
     def climb(self):
         # FIXME 没有真实订单的模拟测试，生产环境注释即可
         # order_test = [("Test_1548615412315", "2018-08-07 15:00:03", "疯狂的石头",
-                       u"留言: test@qq.com  http://download.csdn.net/download/lqkitten/10113904")]
+        #               u"留言: test@qq.com  http://download.csdn.net/download/lqkitten/10113904")]
         # return order_test
 
         # 切换回淘宝窗口
@@ -275,17 +276,18 @@ class TaobaoClimber:
 
 
 if __name__ == '__main__':
+    
     # 初始化
     TaobaoClimber.driver = webdriver.Firefox()  # 应将浏览器驱动放于python根目录下，且python已配置path环境变量
     TaobaoClimber.action = ActionChains(TaobaoClimber.driver)
     TaobaoClimber.driver.maximize_window()  # 浏览器最大化
     TaobaoClimber.driver.execute_script("window.open('')")
 
-    climber = TaobaoClimber(u"test", "123456")
+    climber = TaobaoClimber(u"supreme25", "lemon-0205")
     while True:
         # 循环爬取订单
         orders = climber.climb()
         for order in orders:
-            print_msg("淘宝订单产生：订单号：%s\t订单日期：%s \t买家：%s\t备注：%s" % order)
+            print ("淘宝订单产生：订单号：%s\t订单日期：%s \t买家：%s\t备注：%s" % order)
         # 每30秒抓一次
         time.sleep(30)
